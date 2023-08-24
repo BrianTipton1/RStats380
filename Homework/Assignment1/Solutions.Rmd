@@ -1,0 +1,31 @@
+---
+title: "Assignment 1"
+output: html_notebook
+---
+
+```{r include=FALSE}
+library(dplyr)
+```
+
+- Question 2 (Part A)
+
+```{r}
+oneParticle <- A1Q2 %>% filter(`Number of particles` >= 1)
+fiveParticle <- A1Q2 %>% filter(`Number of particles` >= 5)
+sum(fiveParticle$`Frequency`)
+```
+
+- Question 2 (Part B)
+
+```{r}
+fiveTenInc <- A1Q2 %>% filter(`Number of particles` >= 5 & `Number of particles` <= 10)
+fiveTenExc <- A1Q2 %>% filter(`Number of particles` > 5 & `Number of particles` < 10)
+sum(fiveTenInc$`Frequency`) / 100
+sum(fiveTenExc$`Frequency`) / 100
+```
+
+- Question 4
+```{r}
+A1Q4 |> (\(x) x[x == 'A'])() |> length() 
+```
+
