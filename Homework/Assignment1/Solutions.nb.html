@@ -1784,17 +1784,123 @@ sum(fiveTenExc$`Frequency`) / 100</code></pre>
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQTFRNCB8PiAoXFwoeCkgeFt4ID09ICdBJ10pKCkgfD4gbGVuZ3RoKClcbmBgYCJ9 -->
-<pre class="r"><code>A1Q4 |&gt; (\(x) x[x == &#39;A&#39;])() |&gt; length()</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQTFRNCB8PiAoXFwoeCkgeFt4ID09ICdBJ10pKCkgfD4gbGVuZ3RoKCkgXG5gYGAifQ== -->
+<pre class="r"><code>A1Q4 |&gt; (\(x) x[x == &#39;A&#39;])() |&gt; length() </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDI4XG4ifQ== -->
-<pre><code>[1] 28</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Question 6 (a)</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQTFRNiRgYmxvb2QgcHJlc3N1cmUgKGluIG1tSGcpYCB8PlxuICAoXFwoeCkgcm91bmQoeCAvIDUpICogNSkoKSB8PlxuICBzb3J0KCkgfD5cbiAgbWVkaWFuKClcbmBgYCJ9 -->
+<pre class="r"><code>A1Q6$`blood pressure (in mmHg)` |&gt;
+  (\(x) round(x / 5) * 5)() |&gt;
+  sort() |&gt;
+  median()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Question 6 (b)</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFsdWVzIDwtIGMoMTI4LjYsIDEzNy43LCAxNDguNCwgMTQwLjAsIDEyMy43LCAxMzIuMCwgMTE4LjMsIDE0MS41LCAxNDMuMilcbnZhbHVlcyB8PlxuICAoXFwoeCkgcm91bmQoeCAvIDUpICogNSkoKSB8PlxuICBzb3J0KCkgfD5cbiAgbWVkaWFuKClcbmBgYCJ9 -->
+<pre class="r"><code>values &lt;- c(128.6, 137.7, 148.4, 140.0, 123.7, 132.0, 118.3, 141.5, 143.2)
+values |&gt;
+  (\(x) round(x / 5) * 5)() |&gt;
+  sort() |&gt;
+  median()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Question 7 (a)</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFscyA8LVxuICBjKFxuICAgIDAuNzIxICAgICxcbiAgICAwLjg1NyAgICAsXG4gICAgMC44NjcgICAgLFxuICAgIDAuOTA0ICAgICxcbiAgICAwLjkyMiAgICAsXG4gICAgMC45MzYgICAgLFxuICAgIDAuOTgxICAgICxcbiAgICAxLjAxMCAsXG4gICAgMS4wMzkgICAgLFxuICAgIDEuMDUwICAgICxcbiAgICAxLjA4MSAgICAsXG4gICAgMS4xMjEgICAgLFxuICAgIDEuMTMzICAgICxcbiAgICAxLjE2MiAgICAsXG4gICAgMS4yMzMgICAgLFxuICAgIDEuMDM5XG4gIClcbm1lZGlhbih2YWxzIHw+IHNvcnQoKSlcbjEuMzU3IC0gMS4wMzlcbmBgYCJ9 -->
+<pre class="r"><code>vals &lt;-
+  c(
+    0.721    ,
+    0.857    ,
+    0.867    ,
+    0.904    ,
+    0.922    ,
+    0.936    ,
+    0.981    ,
+    1.010 ,
+    1.039    ,
+    1.050    ,
+    1.081    ,
+    1.121    ,
+    1.133    ,
+    1.162    ,
+    1.233    ,
+    1.039
+  )
+median(vals |&gt; sort())
+1.357 - 1.039</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Question 10</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmFuZ2UoQTFRMTAkYG94eWdlbiBjb25zdW1wdGlvbiAobUwgcGVyIGtnIHBlciBtaW4pYClcbjQ5LjYtMjRcblxuYGBgIn0= -->
+<pre class="r"><code>range(A1Q10$`oxygen consumption (mL per kg per min)`)
+49.6-24
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Question 11</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXNwaGFsdCA8LSBjKDI3OTYsIDI5MjQsIDMwNDksIDI4MjYsIDI4OTMgKVxubWVhbkFzczwtbWVhbihhc3BoYWx0KVxuYXNwaGFsdCB8PiBzb3J0KCkgfD4gbWVkaWFuKClcblxuKDI3OTYrIDI5MjQrIDMwNDkrIDI4MjYrIDI4OTMpLzVcbnZhcihhc3BoYWx0KVxuYGBgIn0= -->
+<pre class="r"><code>asphalt &lt;- c(2796, 2924, 3049, 2826, 2893 )
+meanAss&lt;-mean(asphalt)
+asphalt |&gt; sort() |&gt; median()
+
+(2796+ 2924+ 3049+ 2826+ 2893)/5
+var(asphalt)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Question 12</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVhbihBMVExMiRgc2luZ2xlLWxlZyBwb3dlcmApXG5BMVExMiRgc2luZ2xlLWxlZyBwb3dlcmAgfD4gc29ydCgpIHw+IG1lZGlhbigpXG5gYGAifQ== -->
+<pre class="r"><code>mean(A1Q12$`single-leg power`)
+A1Q12$`single-leg power` |&gt; sort() |&gt; median()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ul>
+<li>Question 13</li>
+</ul>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3FydCh2YXIodmFscykpXG5cbmBgYCJ9 -->
+<pre class="r"><code>sqrt(var(vals))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuNzM0MTc2NVxuIn0= -->
+<pre><code>[1] 0.7341765</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAxIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpsaWJyYXJ5KGRwbHlyKQpgYGAKCi0gUXVlc3Rpb24gMiAoUGFydCBBKQoKYGBge3J9Cm9uZVBhcnRpY2xlIDwtIEExUTIgJT4lIGZpbHRlcihgTnVtYmVyIG9mIHBhcnRpY2xlc2AgPj0gMSkKZml2ZVBhcnRpY2xlIDwtIEExUTIgJT4lIGZpbHRlcihgTnVtYmVyIG9mIHBhcnRpY2xlc2AgPj0gNSkKc3VtKGZpdmVQYXJ0aWNsZSRgRnJlcXVlbmN5YCkKYGBgCgotIFF1ZXN0aW9uIDIgKFBhcnQgQikKCmBgYHtyfQpmaXZlVGVuSW5jIDwtIEExUTIgJT4lIGZpbHRlcihgTnVtYmVyIG9mIHBhcnRpY2xlc2AgPj0gNSAmIGBOdW1iZXIgb2YgcGFydGljbGVzYCA8PSAxMCkKZml2ZVRlbkV4YyA8LSBBMVEyICU+JSBmaWx0ZXIoYE51bWJlciBvZiBwYXJ0aWNsZXNgID4gNSAmIGBOdW1iZXIgb2YgcGFydGljbGVzYCA8IDEwKQpzdW0oZml2ZVRlbkluYyRgRnJlcXVlbmN5YCkgLyAxMDAKc3VtKGZpdmVUZW5FeGMkYEZyZXF1ZW5jeWApIC8gMTAwCmBgYAoKLSBRdWVzdGlvbiA0CmBgYHtyfQpBMVE0IHw+IChcKHgpIHhbeCA9PSAnQSddKSgpIHw+IGxlbmd0aCgpIApgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQXNzaWdubWVudCAxIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpsaWJyYXJ5KGRwbHlyKQpgYGAKCi0gUXVlc3Rpb24gMiAoUGFydCBBKQoKYGBge3J9Cm9uZVBhcnRpY2xlIDwtIEExUTIgJT4lIGZpbHRlcihgTnVtYmVyIG9mIHBhcnRpY2xlc2AgPj0gMSkKZml2ZVBhcnRpY2xlIDwtIEExUTIgJT4lIGZpbHRlcihgTnVtYmVyIG9mIHBhcnRpY2xlc2AgPj0gNSkKc3VtKGZpdmVQYXJ0aWNsZSRgRnJlcXVlbmN5YCkKYGBgCgotIFF1ZXN0aW9uIDIgKFBhcnQgQikKCmBgYHtyfQpmaXZlVGVuSW5jIDwtIEExUTIgJT4lIGZpbHRlcihgTnVtYmVyIG9mIHBhcnRpY2xlc2AgPj0gNSAmIGBOdW1iZXIgb2YgcGFydGljbGVzYCA8PSAxMCkKZml2ZVRlbkV4YyA8LSBBMVEyICU+JSBmaWx0ZXIoYE51bWJlciBvZiBwYXJ0aWNsZXNgID4gNSAmIGBOdW1iZXIgb2YgcGFydGljbGVzYCA8IDEwKQpzdW0oZml2ZVRlbkluYyRgRnJlcXVlbmN5YCkgLyAxMDAKc3VtKGZpdmVUZW5FeGMkYEZyZXF1ZW5jeWApIC8gMTAwCmBgYAoKLSBRdWVzdGlvbiA0CmBgYHtyfQpBMVE0IHw+IChcKHgpIHhbeCA9PSAnQSddKSgpIHw+IGxlbmd0aCgpIApgYGAKCi0gUXVlc3Rpb24gNiAoYSkKYGBge3J9CkExUTYkYGJsb29kIHByZXNzdXJlIChpbiBtbUhnKWAgfD4KICAoXCh4KSByb3VuZCh4IC8gNSkgKiA1KSgpIHw+CiAgc29ydCgpIHw+CiAgbWVkaWFuKCkKYGBgCgotIFF1ZXN0aW9uIDYgKGIpCmBgYHtyfQp2YWx1ZXMgPC0gYygxMjguNiwgMTM3LjcsIDE0OC40LCAxNDAuMCwgMTIzLjcsIDEzMi4wLCAxMTguMywgMTQxLjUsIDE0My4yKQp2YWx1ZXMgfD4KICAoXCh4KSByb3VuZCh4IC8gNSkgKiA1KSgpIHw+CiAgc29ydCgpIHw+CiAgbWVkaWFuKCkKYGBgCgotIFF1ZXN0aW9uIDcgKGEpCmBgYHtyfQp2YWxzIDwtCiAgYygKICAgIDAuNzIxICAgICwKICAgIDAuODU3ICAgICwKICAgIDAuODY3ICAgICwKICAgIDAuOTA0ICAgICwKICAgIDAuOTIyICAgICwKICAgIDAuOTM2ICAgICwKICAgIDAuOTgxICAgICwKICAgIDEuMDEwICwKICAgIDEuMDM5ICAgICwKICAgIDEuMDUwICAgICwKICAgIDEuMDgxICAgICwKICAgIDEuMTIxICAgICwKICAgIDEuMTMzICAgICwKICAgIDEuMTYyICAgICwKICAgIDEuMjMzICAgICwKICAgIDEuMDM5CiAgKQptZWRpYW4odmFscyB8PiBzb3J0KCkpCjEuMzU3IC0gMS4wMzkKYGBgCgotIFF1ZXN0aW9uIDEwCmBgYHtyfQpyYW5nZShBMVExMCRgb3h5Z2VuIGNvbnN1bXB0aW9uIChtTCBwZXIga2cgcGVyIG1pbilgKQo0OS42LTI0CgpgYGAKCi0gUXVlc3Rpb24gMTEKYGBge3J9CmFzcGhhbHQgPC0gYygyNzk2LCAyOTI0LCAzMDQ5LCAyODI2LCAyODkzICkKbWVhbkFzczwtbWVhbihhc3BoYWx0KQphc3BoYWx0IHw+IHNvcnQoKSB8PiBtZWRpYW4oKQoKKDI3OTYrIDI5MjQrIDMwNDkrIDI4MjYrIDI4OTMpLzUKdmFyKGFzcGhhbHQpCmBgYAoKLSBRdWVzdGlvbiAxMgpgYGB7cn0KbWVhbihBMVExMiRgc2luZ2xlLWxlZyBwb3dlcmApCkExUTEyJGBzaW5nbGUtbGVnIHBvd2VyYCB8PiBzb3J0KCkgfD4gbWVkaWFuKCkKYGBgCgotIFF1ZXN0aW9uIDEzCmBgYHtyfQp2YWxzIDwtIGMoMTgwLjYgLDE4MS43ICwxODAuOSAsMTgxLjcgLDE4Mi43ICwxODEuNywxODEuNCAsMTgyLjEgLDE4Mi4xICwxODAuMiAsMTgxLjYgLDE4MC42KQpyYW5nZSh2YWxzKQoxODAuMiAtIDE4Mi43CnNxcnQodmFyKHZhbHMpKQpgYGAKCg==</div>
 
 
 
