@@ -1,7 +1,7 @@
 ---
 title: 'Laboratory Exercise Week 3'
 author: "Your Name and Section, 10 pts"
-date: "Todays Date"
+date: "9/5/23"
 output: word_document
 ---
 
@@ -28,7 +28,15 @@ if (!require(mosaic)) install.packages(`mosaic`)
 # load the package in R
 library(mosaic) # load the package mosaic to use its functions
 ```
+*My Custom functions used from my local lab projects .Rprofile*
 
+```{r message=FALSE}
+source("../../.Rprofile", chdir = TRUE)
+```
+
+```{r}
+catXWithString
+```
 
 1. Recall the `iris` data set from last week's exercise. The `iris` data set is already pre-loaded in R - look at the help file using `?iris` for more information on this data set.   
       i) Check the structure of the data using the function `str(iris)`.   
@@ -41,9 +49,19 @@ library(mosaic) # load the package mosaic to use its functions
 
 ### Code chunk
 ```{r} 
-# Insert your code for this question after this line
+str(iris)
+mean(iris$Sepal.Length) |> catXWithString(string = "Mean of Sepal.Length using 'mean(iris$Sepal.Length)': 3")
 
-# last R code line
+mean(~ Sepal.Length , data = iris) |> catXWithString(string = "Mean of Sepal.Length using 'mean(~ Sepal.Length , data = iris)': ")
+
+splits <- split(iris, iris$Species)
+setosa <- mean(splits$setosa$Sepal.Length) 
+catXWithString(string = "Mean of setosa length: ")
+versicolor <- mean(splits$versicolor$Sepal.Length)
+catXWithString(versicolor,string = "Mean of versicolor length: ")
+virinica <- mean(splits$virginica$Sepal.Length)
+catXWithString(virinica, string = "Mean of virginica length: ")
+histogram(iris$Sepal.Length)
 ```
 
 
