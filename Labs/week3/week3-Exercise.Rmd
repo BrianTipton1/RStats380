@@ -1,26 +1,27 @@
 ---
-title: 'Laboratory Exercise Week 3'
+title: "Laboratory Exercise Week 3"
 author: "Your Name and Section, 10 pts"
 date: "9/5/23"
-output: word_document
+output:
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-*Directions*: 
+*Directions*:
 
-* Write your R code inside the code chunks after each question.
-* Write your answer comments after the `#` sign.
-* To generate the word document output, click the button `Knit` and wait for the word document to appear.
-* RStudio will prompt you (only once) to install the `knitr` package.
-* Submit your completed laboratory exercise using Blackboard's Turnitin feature. Your Turnitin upload link is found on your Blackboard Course shell under the Laboratory folder.
+-   Write your R code inside the code chunks after each question.
+-   Write your answer comments after the `#` sign.
+-   To generate the word document output, click the button `Knit` and wait for the word document to appear.
+-   RStudio will prompt you (only once) to install the `knitr` package.
+-   Submit your completed laboratory exercise using Blackboard's Turnitin feature. Your Turnitin upload link is found on your Blackboard Course shell under the Laboratory folder.
 
-***
+------------------------------------------------------------------------
 
 For this exercise, you will need to use the package `mosaic` to find numerical and graphical summaries.
-
 
 ```{r warning=FALSE, message=FALSE}
 # install mosaic package if necessary
@@ -28,6 +29,7 @@ if (!require(mosaic)) install.packages(`mosaic`)
 # load the package in R
 library(mosaic) # load the package mosaic to use its functions
 ```
+
 *My Custom functions used from my local lab projects .Rprofile*
 
 ```{r message=FALSE}
@@ -38,68 +40,90 @@ source("../../.Rprofile", chdir = TRUE)
 catXWithString
 ```
 
-1. Recall the `iris` data set from last week's exercise. The `iris` data set is already pre-loaded in R - look at the help file using `?iris` for more information on this data set.   
-      i) Check the structure of the data using the function `str(iris)`.   
-      ii) Find the average (or mean) measurement of the variable `Sepal.Length`. Do this in two ways as described in the lesson.   
-      iii) Find the average `Sepal.Length` for the different flower `Species`. Give a brief comment on the averages.  
-      iv) Repeat (ii) and (iii) but use the summary standard deviation `sd()` which describes the spread of the variable.   
-      v) Describe the shape of the variable `Sepal.Length` by creating a histogram using `histogram()`.  Write your description outside the code chunk.  
-      vi) Compare the `Sepal.Length` of the three species of flowers by creating a side-by-side boxplot using `bwplot()`. Write your description outside the code chunk.
-      
+1.  Recall the `iris` data set from last week's exercise. The `iris` data set is already pre-loaded in R - look at the help file using `?iris` for more information on this data set.
+    i)  Check the structure of the data using the function `str(iris)`.\
+    ii) Find the average (or mean) measurement of the variable `Sepal.Length`. Do this in two ways as described in the lesson.\
+    iii) Find the average `Sepal.Length` for the different flower `Species`. Give a brief comment on the averages.\
+    iv) Repeat (ii) and (iii) but use the summary standard deviation `sd()` which describes the spread of the variable.\
+    v)  Describe the shape of the variable `Sepal.Length` by creating a histogram using `histogram()`. Write your description outside the code chunk.\
+    vi) Compare the `Sepal.Length` of the three species of flowers by creating a side-by-side boxplot using `bwplot()`. Write your description outside the code chunk.
 
 ### Code chunk
-```{r} 
+
+```{r}
 str(iris)
 mean(iris$Sepal.Length) |> catXWithString(string = "Mean of Sepal.Length using 'mean(iris$Sepal.Length)': 3")
 
 mean(~ Sepal.Length , data = iris) |> catXWithString(string = "Mean of Sepal.Length using 'mean(~ Sepal.Length , data = iris)': ")
+mean(Sepal.Length ~ Species, data= iris) |> catXWithString(string = "Mean of all species")
+print("The averages seem to be lining up close to the middle ground of these 3 values")
+sd(~ Sepal.Length, data = iris) |> catXWithString(string = "Standard Deviation: ")
+sd(Sepal.Length ~ Species, data = iris) |> catXWithString(string = "Standard Deviation all species: ")
+print("The standard deviation has more variance in it from species to species")
 
-splits <- split(iris, iris$Species)
-setosa <- mean(splits$setosa$Sepal.Length) 
-catXWithString(string = "Mean of setosa length: ")
-versicolor <- mean(splits$versicolor$Sepal.Length)
-catXWithString(versicolor,string = "Mean of versicolor length: ")
-virinica <- mean(splits$virginica$Sepal.Length)
-catXWithString(virinica, string = "Mean of virginica length: ")
 histogram(iris$Sepal.Length)
+bwplot(Sepal.Length ~ Species, data = iris)
 ```
 
+#### Note
 
-2. The data set `MLB-TeamBatting-S16.csv` contains MLB Team Batting Data for selected variables. Load the data set from the given url using the code below. This data set was obtained from [Baseball Reference](https://www.baseball-reference.com/leagues/MLB/2016-standard-batting.shtml).
-    * Tm - Team   
-    * Lg - League: American League (AL), National League (NL)  
-    * BatAge - Batters’ average age  
-    * RPG - Runs Scored Per Game  
-    * G - Games Played or Pitched  
-    * AB - At Bats  
-    * R - Runs Scored/Allowed  
-    * H - Hits/Hits Allowed  
-    * HR - Home Runs Hit/Allowed  
-    * RBI - Runs Batted In  
-    * SO - Strikeouts  
-    * BA - Hits/At Bats  
-    * SH - Sacrifice Hits (Sacrifice Bunts)  
-    * SF - Sacrifice Flies  
+-   The Sepal.Length has the highest amount of density roughly from 5-6
 
-    i) Find the average measurement for the following variables `BatAge`, `RPG`, `R`, `H` and `BA`.   
-    ii) Create dotplot's or histogram's for each variable in (i).     
-    iii) Using your own words, describe the distribution of each variable in (i).   Write your answer outside the code chunk.     
-    iv) Find the average and the standard deviation of the variables `RPG`, `H` and `BA` for each league.     
-    v) Describe any differences or similarities between the leagues. Write your comment outside the code chunk.
-      
+2.  The data set `MLB-TeamBatting-S16.csv` contains MLB Team Batting Data for selected variables. Load the data set from the given url using the code below. This data set was obtained from [Baseball Reference](https://www.baseball-reference.com/leagues/MLB/2016-standard-batting.shtml).
 
+    -   Tm - Team\
+    -   Lg - League: American League (AL), National League (NL)\
+    -   BatAge - Batters' average age\
+    -   RPG - Runs Scored Per Game\
+    -   G - Games Played or Pitched\
+    -   AB - At Bats\
+    -   R - Runs Scored/Allowed\
+    -   H - Hits/Hits Allowed\
+    -   HR - Home Runs Hit/Allowed\
+    -   RBI - Runs Batted In\
+    -   SO - Strikeouts\
+    -   BA - Hits/At Bats\
+    -   SH - Sacrifice Hits (Sacrifice Bunts)\
+    -   SF - Sacrifice Flies
+
+    i)  Find the average measurement for the following variables `BatAge`, `RPG`, `R`, `H` and `BA`.\
+    ii) Create dotplot's or histogram's for each variable in (i).\
+    iii) Using your own words, describe the distribution of each variable in (i). Write your answer outside the code chunk.\
+    iv) Find the average and the standard deviation of the variables `RPG`, `H` and `BA` for each league.\
+    v)  Describe any differences or similarities between the leagues. Write your comment outside the code chunk.
 
 ### Code chunk
-```{r} 
+
+```{r}
 # load the data set
 mlb16.data <- read.csv("https://raw.githubusercontent.com/jpailden/rstatlab/master/data/MLB-TeamBatting-S16.csv")
 str(mlb16.data) # check structure
 head(mlb16.data)  # show first six rows
 
+mean_BatAge <- mean(mlb16.data$BatAge, na.rm = TRUE)
+mean_RPG <- mean(mlb16.data$RPG, na.rm = TRUE)
+mean_R <- mean(mlb16.data$R, na.rm = TRUE)
+mean_H <- mean(mlb16.data$H, na.rm = TRUE)
+mean_BA <- mean(mlb16.data$BA, na.rm = TRUE)
 
+# Display the mean values
+mean_BatAge
+mean_RPG
+mean_R
+mean_H
+mean_BA
+hist(mlb16.data$BatAge, main="BatAge", xlab="Average Age")
+hist(mlb16.data$RPG, main="RPG", xlab="Runs Scored Per Game")
+hist(mlb16.data$R, main="R", xlab="Runs Scored/Allowed")
+hist(mlb16.data$H, main="H", xlab="Hits/Hits Allowed")
+hist(mlb16.data$BA, main="BA", xlab="Hits/At Bats")
 
-# last R code line
+mean(mlb16.data$RPG ,data = mlb16.data) |> catXWithString(string = "RPG MEAN: ")
+sd(mlb16.data$RPG ,data = mlb16.data) |> catXWithString(string = "RPG SD: ")
+
+mean(mlb16.data$H ,data = mlb16.data) |> catXWithString(string = "H MEAN: ")
+sd(mlb16.data$H ,data = mlb16.data) |> catXWithString(string = "H SD: ")
+
+mean(mlb16.data$BA ,data = mlb16.data) |> catXWithString(string = "BA MEAN: ")
+sd(mlb16.data$BA ,data = mlb16.data) |> catXWithString(string = "BA SD: ")
 ```
-
-
-
