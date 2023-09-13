@@ -1,8 +1,10 @@
 ---
-title: 'Laboratory Exercise Week 4'
-author: "Your Name and Section, 10 pts"
-date: "Todays Date"
-output: word_document
+title: "Laboratory Exercise Week 4"
+author: "Brian Tipton - 001"
+date: "9/13/23"
+output:
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -31,7 +33,15 @@ library(mosaic) # load the package mosaic to use its functions
 library(dplyr) # load the package dplyr to use its functions
 library(gapminder)  # load the package gapminder for question 1
 ```
+*My Custom functions used from my local lab projects .Rprofile*
 
+```{r message=FALSE}
+source("../../.Rprofile", chdir = TRUE)
+```
+
+```{r}
+catXWithString
+```
 
 1. Using the gapminder data in the lesson, do the following:  
       i) use `filter` to select all countries with the following arguments:  
@@ -51,7 +61,24 @@ library(mosaic)
 library(dplyr)
 library(gapminder)
 
-# last R code line
+filter(gapminder, lifeExp > 60, country %in% c("United Kingdom", "Vietnam"), year > 1990)
+
+gapminder %>%
+  arrange(desc(gdpPercap)) %>%
+  slice(1:15)
+
+new_data <- gapminder %>%
+  mutate(gapminder,gdpPercap_lifeExp = gdpPercap / lifeExp)
+
+select(gapminder, gdpPercap_lifeExp)
+
+summary_data <- new_data %>%
+  summarise(mean_gdpPercap_lifeExp = mean(gdpPercap_lifeExp))
+
+grouped_summary <- gapminder %>%
+  group_by(continent) %>%
+  summarise(mean_lifeExp = mean(lifeExp))
+grouped_summary
 ```
 
 
@@ -84,12 +111,23 @@ library(gapminder)
 
 ### Code chunk
 ```{r} 
+library(mosaic)
+library(dplyr)
 # load the data set
 mlb16.data <- read.csv("https://raw.githubusercontent.com/jpailden/rstatlab/master/data/MLB-TeamBatting-S16.csv")
 str(mlb16.data) # check structure
 head(mlb16.data)  # show first six rows
 
+filtered_mlb16 <- mlb16.data %>%
+  filter(STL == "Cardinals", H > 1400, Lg == "NL")
 
+sorted_mlb_data <- mlb_data %>% arrange(desc(HR))
+
+sorted_by_rbi <- mlb_data %>% arrange(desc(RBI))
+
+average_rbi_by_league <- mlb_data %>%
+  group_by(Lg) %>%
+  summarise(avg_RBI = mean(RBI))
 
 # last R code line
 ```

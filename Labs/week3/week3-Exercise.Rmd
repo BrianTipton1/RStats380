@@ -1,6 +1,6 @@
 ---
 title: "Laboratory Exercise Week 3"
-author: "Your Name and Section, 10 pts"
+author: "Brian Tipton STAT-380-001"
 date: "9/5/23"
 output:
   pdf_document: default
@@ -52,7 +52,7 @@ catXWithString
 
 ```{r}
 str(iris)
-mean(iris$Sepal.Length) |> catXWithString(string = "Mean of Sepal.Length using 'mean(iris$Sepal.Length)': 3")
+mean(iris$Sepal.Length) |> catXWithString(string = "Mean of Sepal.Length using 'mean(iris$Sepal.Length)': ")
 
 mean(~ Sepal.Length , data = iris) |> catXWithString(string = "Mean of Sepal.Length using 'mean(~ Sepal.Length , data = iris)': ")
 mean(Sepal.Length ~ Species, data= iris) |> catXWithString(string = "Mean of all species")
@@ -118,12 +118,13 @@ hist(mlb16.data$R, main="R", xlab="Runs Scored/Allowed")
 hist(mlb16.data$H, main="H", xlab="Hits/Hits Allowed")
 hist(mlb16.data$BA, main="BA", xlab="Hits/At Bats")
 
-mean(mlb16.data$RPG ,data = mlb16.data) |> catXWithString(string = "RPG MEAN: ")
-sd(mlb16.data$RPG ,data = mlb16.data) |> catXWithString(string = "RPG SD: ")
+mean(mlb16.data$RPG ~ Lg ,data = mlb16.data) 
+sd(mlb16.data$RPG ~ Lg ,data = mlb16.data)
 
-mean(mlb16.data$H ,data = mlb16.data) |> catXWithString(string = "H MEAN: ")
-sd(mlb16.data$H ,data = mlb16.data) |> catXWithString(string = "H SD: ")
+mean(mlb16.data$H ~Lg,data = mlb16.data)
+sd(mlb16.data$H ~Lg,data = mlb16.data)
 
-mean(mlb16.data$BA ,data = mlb16.data) |> catXWithString(string = "BA MEAN: ")
-sd(mlb16.data$BA ,data = mlb16.data) |> catXWithString(string = "BA SD: ")
+mean(mlb16.data$BA ~Lg,data = mlb16.data)
+sd(mlb16.data$BA ~Lg,data = mlb16.data)
 ```
+#### Both of the leagues were all similar in the standard deviation and mean for both. Although there was some discrepancies 
