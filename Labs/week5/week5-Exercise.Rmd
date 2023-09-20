@@ -1,8 +1,9 @@
 ---
-title: 'Laboratory Exercise Week 5'
-author: "Your Name and Section, 10 pts"
-date: "Todays Date"
-output: word_document
+title: "Laboratory Exercise Week 5"
+author: "Brian Tipton - STAT 380 Section 001"
+date: "9/20/23"
+output:
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -77,6 +78,15 @@ schizophrenia
 ### Code chunk
 ```{r} 
 # start your code
+library(dplyr)
+## i. use `mutate()` to create a new variable `diff` which is the difference of the MRI measurements of each pair.
+mutate(schizophrenia, diff = affected - unaffected)
+## ii. use the pipe `%>%` operator add the new variable `diff` as column to `schizophrenia`.
+schizophrenia = schizophrenia %>% mutate(diff = affected - unaffected)
+# iii. use `summarise` to compute the average difference of the MRI measurements. Use the pipe `%>%` operator to string multiple functions.
+schizophrenia %>% summarise(avg_diff = mean(diff))
+# iv. use `summarise` to compute the standard deviation of the difference of the MRI measurements. Use the pipe `%>%` operator to string multiple functions.
+schizophrenia %>% summarise(std_diff = sd(diff))
 
 
 # last R code line
@@ -113,8 +123,41 @@ str(cdc)
 ### Code chunk
 ```{r} 
 # start your code
+# i) How many variables are present in this data set? For each variable, identify its data type (e.g. categorical, continuous).
+# 10 Variables
+# Variable: ID  Type: integer  (Continuous)
+# Variable: genhlth  Type: character  (Categorical)
+# Variable: exerany  Type: integer  (Categorical)
+# Variable: hlthplan  Type: integer  (Categorical)
+# Variable: smoke100  Type: integer  (Categorical)
+# Variable: height  Type: integer  (Continuous)
+# Variable: weight  Type: integer  (Continuous)
+# Variable: wtdesire  Type: integer  (Continuous)
+# Variable: age  Type: integer  (Continuous)
+# Variable: gender  Type: character  (Categorical)
+## ii) Use `summarise` to compute the average of the variable `weight`.
+cdc %>%
+  summarise(avg_weight = mean(weight, na.rm = TRUE))
+
+#  iii) Use `group_by` to group the rows by `exerany` (exercise any). Repeat part (ii) on this grouped data. Comment on what you observe in the average weights between groups. Use the pipe `%>%` operator to string multiple functions.
+cdc %>%
+  group_by(exerany) %>%
+  summarise(avg_weight = mean(weight, na.rm = TRUE))
+
+# iv) Repeat part (iii) but now use the grouping variables `smoke100` and `gender`. Comment on what you observe in the average weights between groups. Use the pipe `%>%` operator to string multiple functions.
+cdc %>%
+  group_by(smoke100, gender) %>%
+  summarise(avg_weight = mean(weight, na.rm = TRUE))
 
 
+# v) Obtain a random sample of 1000 rows and save this into `cdc.samp1`.
+cdc.samp1 <- sample_n(cdc, 1000)
+# vi) Repeat parts (ii) to (v) but only using the subset data `cdc.samp1`.  Use the pipe `%>%` operator to string multiple functions. 
+cdc.samp1 %>%
+  summarise(avg_weight = mean(weight, na.rm = TRUE))
+cdc.samp1 %>%
+  group_by(exerany) %>%
+  summarise(avg_weight = mean(weight, na.rm = TRUE))
 # last R code line
 ```
 
@@ -133,6 +176,16 @@ str(cdc)
 ### Code chunk
 ```{r} 
 # star your code
+# i) get a sample of size 10 tosses and tally the results
+sample_10 <- sample(c("H", "T"), size = 10, replace = TRUE, prob = c(0.6, 0.4))
+table(sample_10)
+# ii) get a sample of size 30 tosses and tally the results  
+sample_30 <- sample(c("H", "T"), size = 30, replace = TRUE, prob = c(0.6, 0.4))
+table(sample_30)
+
+# iii) get a sample of size 100 tosses and tally the results    
+sample_100 <- sample(c("H", "T"), size = 100, replace = TRUE, prob = c(0.6, 0.4))
+table(sample_100)
 
 
 # last R code line
