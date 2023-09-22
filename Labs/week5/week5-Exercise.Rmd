@@ -91,7 +91,8 @@ schizophrenia %>% summarise(std_diff = sd(diff))
 
 # last R code line
 ```
-
+#### v. based on your answers in (iii) and (iv), do you think there is evidence in favor of the initial hypothesis there is difference in the MRI measurements of the volume of the left hippocampus between those affected and unaffected with schizophrenia?   
+- Due to the negative average it suggests a difference in MRI measurements between the affected and unaffected individuals
 
 2. The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey run by the [Centers of Disease Control](http://www.cdc.gov/brfss) in the United States. The BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage.
 
