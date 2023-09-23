@@ -25,22 +25,13 @@ For this exercise, you will need to use the package `mosaic` to find numerical a
 
 ```{r warning=FALSE, message=FALSE}
 # install packages if necessary
-if (!require(mosaic)) install.packages(`mosaic`)
-if (!require(dplyr)) install.packages(`dplyr`)
-if (!require(gapminder)) install.packages(`gapminder`)
+if (!require(mosaic)) install.packages(mosaic)
+if (!require(dplyr)) install.packages(dplyr)
+if (!require(gapminder)) install.packages(gapminder)
 # load the package in R
 library(mosaic) # load the package mosaic to use its functions
 library(dplyr) # load the package dplyr to use its functions
 library(gapminder)  # load the package gapminder for question 1
-```
-*My Custom functions used from my local lab projects .Rprofile*
-
-```{r message=FALSE}
-source("../../.Rprofile", chdir = TRUE)
-```
-
-```{r}
-catXWithString
 ```
 
 1. Using the gapminder data in the lesson, do the following:  
@@ -56,29 +47,39 @@ catXWithString
 
 ### Code chunk
 ```{r} 
-# load the necessary packages
 library(mosaic)
 library(dplyr)
 library(gapminder)
-
-filter(gapminder, lifeExp > 60, country %in% c("United Kingdom", "Vietnam"), year > 1990)
-
+ ##  i) use `filter` to select all countries with the following arguments:  
+ ##  a) life expectancy larger than 60 years.   
+ ##  b) United Kingdom and Vietnam and years greater than 1990.  
+dplyr::filter(gapminder,                                               
+              lifeExp > 60,                                             
+              country %in% c("United Kingdom", "Vietnam") & year > 1990)
+              
+              
+## ii) use `arrange` and `slice` to select the countries with the top 15 GDP per capital `gdpPercap`.
+## Use the pipe `%>%` operator to string multiple functions.
 gapminder %>%
-  arrange(desc(gdpPercap)) %>%
-  slice(1:15)
+  dplyr::arrange(desc(gdpPercap)) %>%
+  dplyr::slice(1:15)
 
-new_data <- gapminder %>%
-  mutate(gapminder,gdpPercap_lifeExp = gdpPercap / lifeExp)
+## iii) use `mutate` to create a new variable called `gdpPercap_lifeExp` which is the quotient of 
+##`gdpPercap` and `lifeExp`. and display the output. 
+gapminder <- gapminder %>%
+  dplyr::mutate(gdpPercap_lifeExp = gdpPercap / lifeExp)
+dplyr::select(gapminder, gdpPercap_lifeExp)
 
-select(gapminder, gdpPercap_lifeExp)
+## iv) use `summarise` to find the average or mean value of the variable `gdpPercap_lifeExp` created in part (iii).  
+gapminder %>%
+  dplyr::summarise(mean_gdpPercap_lifeExp = mean(gdpPercap_lifeExp))
 
-summary_data <- new_data %>%
-  summarise(mean_gdpPercap_lifeExp = mean(gdpPercap_lifeExp))
-
-grouped_summary <- gapminder %>%
-  group_by(continent) %>%
-  summarise(mean_lifeExp = mean(lifeExp))
-grouped_summary
+## use `group_by` to group the countries by `continent`; 
+## and `summarise` to compute the average life expectancy `lifeExp` within each continent.
+## Use the pipe `%>%` operator to string multiple functions.
+gapminder %>%
+  dplyr::group_by(continent) %>%
+  dplyr::summarise(mean_lifeExp = mean(lifeExp))
 ```
 
 
@@ -113,23 +114,33 @@ grouped_summary
 ```{r} 
 library(mosaic)
 library(dplyr)
+
 # load the data set
-mlb16.data <- read.csv("https://raw.githubusercontent.com/jpailden/rstatlab/master/data/MLB-TeamBatting-S16.csv")
+mlb16.data <-
+  read.csv(
+    "https://raw.githubusercontent.com/jpailden/rstatlab/master/data/MLB-TeamBatting-S16.csv"
+  )
 str(mlb16.data) # check structure
 head(mlb16.data)  # show first six rows
 
-filtered_mlb16 <- mlb16.data %>%
-  filter(STL == "Cardinals", H > 1400, Lg == "NL")
+# i) use `filter` to select teams with the following arguments:        
+# a) Cardinals team `STL`.    
+# b) teams with Hits `H` more than 1400 last 2016 season.   
+# c) team league `Lg` is National League `NL`.
+dplyr::filter(mlb16.data, Tm == "STL", H > 1400, Lg == "NL")
 
-sorted_mlb_data <- mlb_data %>% arrange(desc(HR))
+# use `arrange` to select teams in decreasing number of home runs `HR`.
+mlb16.data %>% dplyr::arrange(desc(HR))
 
-sorted_by_rbi <- mlb_data %>% arrange(desc(RBI))
+#  use `arrange` to display the teams in decreasing number of `RBI`.  
+mlb16.data %>% dplyr::arrange(desc(RBI))
 
-average_rbi_by_league <- mlb_data %>%
-  group_by(Lg) %>%
-  summarise(avg_RBI = mean(RBI))
-
-# last R code line
+# use `group_by` to group the teams per league;
+# and `summarise` to compute the average `RBI` within each league.
+# Use the pipe `%>%` operator to string multiple functions. 
+mlb16.data %>%
+  dplyr::group_by(Lg) %>%
+  dplyr::summarise(avg_RBI = mean(RBI))
 ```
 
 

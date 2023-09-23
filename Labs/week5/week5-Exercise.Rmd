@@ -120,47 +120,56 @@ str(cdc)
     
     vii) Comment on what differences you observed (if any) between the results in the original sample and the smaller sample?
     
+#### i) How many variables are present in this data set? For each variable, identify its data type (e.g. categorical, continuous).
+- 10 variables
+
+| Variable | Data Type            |
+|----------|---------------------|
+| ID       | Discrete          |
+| genhlth  | Categorical |
+| exerany  | Binary            |
+| hlthplan | Binary            |
+| smoke100 | Binary            |
+| height   | Discrete            |
+| weight   | Discrete            |
+| wtdesire | Discrete            |
+| age      | Discrete            |
+| gender   | Categorical |
+
 
 ### Code chunk
 ```{r} 
-# start your code
-# i) How many variables are present in this data set? For each variable, identify its data type (e.g. categorical, continuous).
-# 10 Variables
-# Variable: ID  Type: integer  (Continuous)
-# Variable: genhlth  Type: character  (Categorical)
-# Variable: exerany  Type: integer  (Categorical)
-# Variable: hlthplan  Type: integer  (Categorical)
-# Variable: smoke100  Type: integer  (Categorical)
-# Variable: height  Type: integer  (Continuous)
-# Variable: weight  Type: integer  (Continuous)
-# Variable: wtdesire  Type: integer  (Continuous)
-# Variable: age  Type: integer  (Continuous)
-# Variable: gender  Type: character  (Categorical)
 ## ii) Use `summarise` to compute the average of the variable `weight`.
 cdc %>%
-  summarise(avg_weight = mean(weight, na.rm = TRUE))
+  summarise(avg_weight = mean(weight))
 
 #  iii) Use `group_by` to group the rows by `exerany` (exercise any). Repeat part (ii) on this grouped data. Comment on what you observe in the average weights between groups. Use the pipe `%>%` operator to string multiple functions.
+
+# The average weight of smokers is slightly less
 cdc %>%
   group_by(exerany) %>%
-  summarise(avg_weight = mean(weight, na.rm = TRUE))
+  summarise(avg_weight = mean(weight))
 
 # iv) Repeat part (iii) but now use the grouping variables `smoke100` and `gender`. Comment on what you observe in the average weights between groups. Use the pipe `%>%` operator to string multiple functions.
+
+# The average weight of smokers is seems slightly more for each gender
 cdc %>%
   group_by(smoke100, gender) %>%
-  summarise(avg_weight = mean(weight, na.rm = TRUE))
+  summarise(avg_weight = mean(weight))
 
 
 # v) Obtain a random sample of 1000 rows and save this into `cdc.samp1`.
 cdc.samp1 <- sample_n(cdc, 1000)
 # vi) Repeat parts (ii) to (v) but only using the subset data `cdc.samp1`.  Use the pipe `%>%` operator to string multiple functions. 
 cdc.samp1 %>%
-  summarise(avg_weight = mean(weight, na.rm = TRUE))
+  summarise(avg_weight = mean(weight))
 cdc.samp1 %>%
   group_by(exerany) %>%
-  summarise(avg_weight = mean(weight, na.rm = TRUE))
+  summarise(avg_weight = mean(weight))
 # last R code line
 ```
+#### vii) Comment on what differences you observed (if any) between the results in the original sample and the smaller sample?
+- There are is only a small discrepancy between the full cdc data set and 1000 row sample.
 
 
 
@@ -191,4 +200,6 @@ table(sample_100)
 
 # last R code line
 ```
+####  iv) what do you notice with the proportion of heads in each sample?  
+- In the samples, as the size increases the proportion of heads to tail ratio increases in favor of more heads to less tails.
 
