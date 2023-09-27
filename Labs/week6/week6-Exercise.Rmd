@@ -1,7 +1,7 @@
 ---
 title: "Laboratory Exercise Week 6"
 author: "Brian Tipton - STAT380-001"
-date: "9/26/23"
+date: "9/27/23"
 output:
   pdf_document: default
 ---
@@ -46,22 +46,22 @@ library(mosaic) # load the package mosaic to use its functions
 ### Code chunk
 ```{r} 
 #i) How is X distributed? 
+# x is distributed around symmetrically around teachers sho believe that their students use wikipedia
+
 cat("X is distributed as Binomial(n=40,p=0.75)Binomial(n=40,p=0.75)")
 
 #ii) Use `plotDist()` to draw the probability distribution of X.  
-n <- 40
-p <- 0.75
-x <- 0:n
-prob <- dbinom(x, size=n, prob=p)
-
-plot(x, prob, type="h", xlab="X", ylab="Probability", main="Probability Distribution of X")
-points(x, prob, pch=16)
+plotDist("binom", size = 40, prob = 0.75)
 
 #iii) Compute the probability that X is equal to 30. 
-dbinom(30, size=40, prob=0.75)
+eq30 <- dbinom(x = 30, size=40, prob=0.75)
+eq30
 
-#iv) Compute the probability that X is at most 30. What is the difference between parts (iii) and (iv).  
-pbinom(30, size=40, prob=0.75)
+#iv) Compute the probability that X is at most 30. 
+atMost30 <- pbinom(30, size=40, prob=0.75)
+atMost30
+# What is the difference between parts (iii) and (iv).  
+# The difference between x=30 and x<=30 is that the former includes probability that x values are less than 30 and 30 itself inclued.
 
 #v) Compute the probability that X is anywhere from 30 to 35.  
 pbinom(35, size=40, prob=0.75) - pbinom(29, size=40, prob=0.75)
@@ -86,29 +86,29 @@ pbinom(35, size=40, prob=0.75) - pbinom(29, size=40, prob=0.75)
 ### Code chunk
 ```{r} 
 # start your code
-#i) Use `plotDist` to draw the probability density function of the left atrial diameter.    
 mean <- 26.4
 sd <- 4.2
-x <- seq(15, 40, by=0.1)
-y <- dnorm(x, mean=mean, sd=sd)
 
-plot(x, y, type="l", xlab="Left Atrial Diameter (mm)", ylab="Density", main="Probability Density Function")
+#i) Use `plotDist` to draw the probability density function of the left atrial diameter.
+plotDist("norm",
+         params = c(mean = mean, sd = sd),
+         xlim = c(15, 40))
 
-# ii) Generate 50 sample measurements of the left atrial diameters and plot the measurements using a histogram.  
-samples <- rnorm(50, mean=mean, sd=sd)
-hist(samples, breaks=10, xlab="Left Atrial Diameter (mm)", main="Histogram of Sample Measurements")
+# ii) Generate 50 sample measurements of the left atrial diameters and plot the measurements using a histogram.
+samples <- rnorm(50, mean = mean, sd = sd)
+hist(samples)
 
-#iii) Approximately what proportion of healthy children have left atrial diameters less than 23.5 mm?  
-pnorm(23.5, mean=mean, sd=sd)
+#iii) Approximately what proportion of healthy children have left atrial diameters less than 23.5 mm?
+pnorm(23.5, mean = mean, sd = sd)
 
-#iv) Approximately what proportion of healthy children have left atrial diameters greater than 32.5 mm? 
-1 - pnorm(32.5, mean=mean, sd=sd)
+#iv) Approximately what proportion of healthy children have left atrial diameters greater than 32.5 mm?
+1 - pnorm(32.5, mean = mean, sd = sd)
 
-# v) Approximately what proportion of healthy children have left atrial diameters between 24 and 29 mm?  
-pnorm(29, mean=mean, sd=sd) - pnorm(24, mean=mean, sd=sd)
+# v) Approximately what proportion of healthy children have left atrial diameters between 24 and 29 mm?
+pnorm(29, mean = mean, sd = sd) - pnorm(24, mean = mean, sd = sd)
 
-#vi) For healthy children, what is the value for which only about 25% have larger left atrial diameter?  
-qnorm(0.75, mean=mean, sd=sd)
+#vi) For healthy children, what is the value for which only about 25% have larger left atrial diameter?
+qnorm(0.75, mean = mean, sd = sd)
 
 # last R code line
 ```
