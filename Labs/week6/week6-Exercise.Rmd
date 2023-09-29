@@ -46,9 +46,10 @@ library(mosaic) # load the package mosaic to use its functions
 ### Code chunk
 ```{r} 
 #i) How is X distributed? 
-# x is distributed around symmetrically around teachers sho believe that their students use wikipedia
+# x is distributed around symmetrically around teachers who believe that their
+# students use wikipedia
 
-cat("X is distributed as Binomial(n=40,p=0.75)Binomial(n=40,p=0.75)")
+cat("X is distributed as Binomial(n=40,p=0.75)")
 
 #ii) Use `plotDist()` to draw the probability distribution of X.  
 plotDist("binom", size = 40, prob = 0.75)
@@ -61,7 +62,7 @@ eq30
 atMost30 <- pbinom(30, size=40, prob=0.75)
 atMost30
 # What is the difference between parts (iii) and (iv).  
-# The difference between x=30 and x<=30 is that the former includes probability that x values are less than 30 and 30 itself inclued.
+# The difference between x=30 and x<=30 is that the former includes probability that x values are less than 30 and 30 itself included.
 
 #v) Compute the probability that X is anywhere from 30 to 35.  
 pbinom(35, size=40, prob=0.75) - pbinom(29, size=40, prob=0.75)
