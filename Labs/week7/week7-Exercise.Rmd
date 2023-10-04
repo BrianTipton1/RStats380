@@ -1,8 +1,9 @@
 ---
-title: 'Laboratory Exercise Week 7'
-author: "Your Name and Section, 10 pts"
-date: "Todays Date"
-output: word_document
+title: "Laboratory Exercise Week 7"
+author: "Brian Tipton"
+date: "10/4/23"
+output:
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -40,8 +41,29 @@ library(mosaic) # load the package mosaic to use its functions
 ### Code chunk
 ```{r} 
 # start your code
-ceo_salary <- read.csv("https://www.siue.edu/~jpailde/CEO_Salary_2012.csv")
+library(mosaic) # load the package mosaic to use its functions
+ceo_salary <-
+  read.csv("https://www.siue.edu/~jpailde/CEO_Salary_2012.csv")
 
+#i) Select a random sample of 40 CEO's and compute the sample mean salary and sample standard deviation salary.
+sample_40 <- sample_n(ceo_salary, size =  40)
+# Original Mean
+mean( ~ Annual.pay, data = sample_40)
+# Original SD
+sdOrig = (sd( ~ Annual.pay, data = sample_40))
+sdOrig
+
+
+# ii) Use the `do()` function to compute the sample mean of 100 randomly selected samples.  Plot the histogram of these 100 sample means.
+samples <- do (100) * mean( ~ Annual.pay, data = sample_n(ceo_salary, size = 40))
+histogram( ~ mean, data = samples)
+
+
+#iii) Compute the average and standard deviation of these 100 sample means. Are the values what you expect from the properties of the sampling distribution.
+meanSamples <- mean( ~ mean, data = samples)
+sdSamples <- sd( ~ mean, data = samples)
+# Yes, it is as expected for the sd, this is very close to what is exepected. as we calculated by the original standard deviation divided by the square root of the sample
+# for the mean too. this is , this is close to what one would expect. as the mean of the initial sample was relatively near or close to the sample
 
 # last R code line
 ```
@@ -56,9 +78,15 @@ ceo_salary <- read.csv("https://www.siue.edu/~jpailde/CEO_Salary_2012.csv")
 ### Code chunk
 ```{r} 
 # start your code
+# i) If the distribution is normal, what is the probability that the sample mean hardness for a random sample of 9 pins is at least 51? 
+1 - pnorm(q = 51,
+          mean = 50,
+          sd = 1.2 / sqrt(9))
 
-
-# last R code line
+# ii) Without assuming population normality, what is the  (approximate) probability that the sample mean hardness for a random sample of 40 pins is at least 51?
+1 - pnorm(q = 51,
+          mean = 50,
+          sd = 1.2 / sqrt(40))
 ```
 
 
@@ -72,7 +100,13 @@ ceo_salary <- read.csv("https://www.siue.edu/~jpailde/CEO_Salary_2012.csv")
 ```{r} 
 # start your code
 
+# i) What are the mean and standard deviation of the sampling distribution of the sample mean?
+sample_man = 40
+sample_sd = 5 / sqrt(64)
 
+# ii) What is the approximate probability that the sample mean will be within 0.5 of the population mean?
+pnorm(q = 40.5, mean = sample_man, sd = sample_sd) - pnorm(q = 39.5, mean =
+                                                             sample_man, sd = sample_sd)
 # last R code line
 ```
 
