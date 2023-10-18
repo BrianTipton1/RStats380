@@ -1,8 +1,9 @@
 ---
-title: 'Laboratory Exercise Week 9'
-author: "Your Name and Section, 10 pts"
-date: "Todays Date"
-output: word_document
+title: "Laboratory Exercise Week 9"
+author: "Brian Tipton - STAT-380-001"
+date: "10/18/23"
+output:
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -50,8 +51,25 @@ wrist <- data.frame(ID = 1:24,
 ### Code chunk
 ```{r} 
 # start your code
+# i) Compute the mean and standard deviation of the wrist extensions data above. 
+# Describe the sample using these summaries.
+favstats( ~ extension, data = wrist)
+cat("")
 
+# ii) Create a histogram and QQ-plot of the wrist extensions. Is the normality assumption reasonable? 
+qqmath(~ extension, data = wrist)
+histogram(~ extension, data = wrist, fit = "normal")
+cat("Yes the normality fit is reasonable it fits on the curve well.")
 
+# iii) Use the data to estimate the mean wrist extension for people 
+# using this new mouse design using a 97\% confidence interval.
+# Provide an interpretation of this interval.
+t.test(~ extension, data = wrist, conf.level=0.97)
+cat("The range is 26.83941 - 24.99393 which is 1.8455 and the mean is 25.91667.")
+
+# iv) Use the data to test the hypothesis that the mean wrist extension for people using this new design is greater than 20 degrees.
+# Use alpha = 0.01 (1\%) level of significance. 
+t.test(~ extension, data = wrist, alternative = 'greater', mu = 20, conf.level = 0.99)
 # last R code line
 ```
 
@@ -78,6 +96,25 @@ str(wireless.data)
 ```{r} 
 # start your code
 
+# i) Compute the mean and standard deviation of the wireless data above. 
+# Describe the sample using these summaries.
+favstats( ~ Wireless, data = wireless.data)
+cat("")
+
+# ii) Create a histogram and QQ-plot of the wireless data. Is the normality assumption reasonable?
+qqmath(~ Wireless, data = wireless.data)
+histogram(~ Wireless, data = wireless.data, fit = "normal")
+cat("No the normality assumption is not reasonable, it has two peaks.")
+
+# iii) Use the data to estimate the mean wireless percentage per state 
+# using a 90% confidence interval. 
+# Provide an interpretation of this interval.
+t.test(~ Wireless, data = wireless.data, conf.level = 0.90)
+cat("The mean is 14.81569 and the range is 16.06989 - 13.56148 which is 2.5084")
+
+# iv) Use the data to test the hypothesis that the mean wireless percentage per state is less than 17.
+# Use alpha = 0.05 (5%) level of significance.
+t.test(~ Wireless, data = wireless.data, alternative = 'less', mu = 17, conf.level = 0.95)
 
 # last R code line
 ```
