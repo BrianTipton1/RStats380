@@ -47,17 +47,20 @@ n = 400
 phat = 0.47
 std.error <- 1.96 * sqrt(phat * (1 - phat) / n)
 
-# i) Use this information to estimate the true proportion of Internet users who searched information about themselves using a default 95\% confidence interval
+# i) Use this information to estimate the true proportion of Internet users who searched
+# information about themselves using a default 95\% confidence interval
 data.frame(LL = phat - std.error, UL = phat + std.error)
 
 #  ii) Repeat (i) but instead use a 98\% Confidence Level. Use function `prop.test()`.
 prop.test(x = phat * n, n = 400, conf.level = 0.98)
 
 # iii) What is the main difference between the intervals computed in (i) and (ii)?
-# What do you think is the role of the confidence level in determining the precision of the confidence interval estimate?
+# What do you think is the role of the confidence level in determining the precision of the 
+# confidence interval estimate?
 
 # The main difference between part i) and part ii) is that, in part ii) has a wider range.
-# This is because with a standard distribution the higher the confidence level should mean the numbers are more precisely within these bounds.
+# This is because with a standard distribution the higher the confidence level should mean the numbers 
+# are more precisely within these bounds.
 
 # last R code line
 ```
@@ -73,22 +76,34 @@ prop.test(x = phat * n, n = 400, conf.level = 0.98)
 ### Code chunk
 ```{r} 
 # start your code
-# i) Assuming that it is reasonable to regard this sample of 500 potential jurors as representative of potential jurors in the US, use the given information to construct and interpret a 95\% confidence interval for the proportion of all potential jurors who regularly watch at least one crime-scene investigation series
+# i) Assuming that it is reasonable to regard this sample of 500 potential jurors as 
+# representative of potential jurors in the US, use the given information to construct 
+# and interpret a 95\% confidence interval for the proportion of all potential jurors who 
+# regularly watch at least one crime-scene investigation series
 n = 500
 phat = 350 / n
 std.error = 1.96 * sqrt(phat * (1 - phat) / n)
 data.frame(LL = phat - std.error, UL = phat + std.error)
 
-# ii) Using the same sample proportion as part (i), construct a 95\% confidence interval for same proportion but instead use a sample size of 50.
+# ii) Using the same sample proportion as part (i), construct a 95\% confidence 
+interval for same proportion but instead use a sample size of 50.
 prop.test(x = (phat * n) / 10, n = 50, conf.level = 0.95)
 
-# iii) What is the main difference between the confidence intervals computed in part (i) and (ii)? What do you think is the role of the sample size in determining the precision the confidence interval estimate?
+# iii) What is the main difference between the confidence intervals computed in part (i) and (ii)?
+# What do you think is the role of the sample size in determining the precision the confidence 
+# interval estimate?
 
-# The main and of course the biggest difference here is that the smaller the sample size the lesser to draw data from, so the lesser the accuracy.
+# The main and of course the biggest difference here is that the smaller the sample size the lesser-
+# to draw data from, so the lesser the accuracy.
+
 # When we use n=500, it had about one third of the range of the part we used n=50.
-# From this we can conclude that the size of the sample proportional to the confidence level we can gain or get from its data.
 
-# iv) looking at the x-squares and p values in both the first and second part, this shows that the bigger the sample size. the more accurate the data will be. Note the p value is most often not affected.
+# From this we can conclude that the size of the sample proportional to the confidence level we
+# can gain or get from its data.
+
+# iv) looking at the x-squares and p values in both the first and second part, this shows that the 
+# bigger the sample size. the more accurate the data will be. Note the p value is most often not 
+# affected.
 
 # last R code line
 ```
