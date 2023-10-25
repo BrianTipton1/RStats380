@@ -6,9 +6,7 @@ output:
   pdf_document: default
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 *Directions*: 
 
@@ -23,7 +21,8 @@ knitr::opts_chunk$set(echo = TRUE)
 For this exercise, you will need to use the package `mosaic` to find numerical and graphical summaries.
 
 
-```{r warning=FALSE, message=FALSE}
+
+```r
 # install package if necessary
 if (!require(mosaic)) install.packages(`mosaic`)
 # load the package in R
@@ -32,7 +31,8 @@ library(mosaic) # load the package mosaic to use its functions
 
 1. The experimental data below contains food intake (in Kcal) for 15 men on the day following two nights of only 4 hours of sleep each night and for 15 mean on the day following two nights of 8 hours of sleep each each night. The mean participating in this experiment were randomly assigned to one of the two sleep conditions.
 
-```{r}
+
+```r
 four.hr.grp <- c(3585, 4470, 3068, 5338, 2221, 4791, 4435, 3099, 3187, 3901, 3868, 3869, 4878, 3632, 4518)  
 eight.hr.grp <- c(4965, 3918, 1987, 4993, 5220, 3653, 3510, 3338, 4100, 5792, 4547, 3319, 4304, 4057)
 ```
@@ -43,42 +43,167 @@ eight.hr.grp <- c(4965, 3918, 1987, 4993, 5220, 3653, 3510, 3338, 4100, 5792, 45
   iv) State the results of your t-test. Can you make conclusive statement based on the information in your data? Why?    
 
 ### Code chunk
-```{r} 
+
+```r
 # start your code
 # i) Compute the mean and standard deviation of the two groups.
 # Comment on what you see.  
 cat("4 hour group\n")
+```
+
+```
+## 4 hour group
+```
+
+```r
 cat("mean: ")
+```
+
+```
+## mean:
+```
+
+```r
 mean(four.hr.grp)
+```
+
+```
+## [1] 3924
+```
+
+```r
 cat("standard deviation: ")
+```
+
+```
+## standard deviation:
+```
+
+```r
 sd(four.hr.grp)
+```
+
+```
+## [1] 829.6681
+```
+
+```r
 cat("8 hour group\n")
+```
+
+```
+## 8 hour group
+```
+
+```r
 cat("mean: ")
+```
+
+```
+## mean:
+```
+
+```r
 mean(eight.hr.grp)
+```
+
+```
+## [1] 4121.643
+```
+
+```r
 cat("standard deviation: ")
+```
+
+```
+## standard deviation:
+```
+
+```r
 sd(eight.hr.grp)
+```
+
+```
+## [1] 966.2004
+```
+
+```r
 cat("In the eight hour group the mean increases but so does the standard deviation")
+```
 
+```
+## In the eight hour group the mean increases but so does the standard deviation
+```
 
+```r
 # ii) Create a boxplot and histogram (with a fitted normal density curve)
 # for the food intake in the two groups.
 # Is the normal distribution a reasonable assumption for the sodium intake in both classes?
 bwplot(four.hr.grp)
-histogram(four.hr.grp, fit="normal")
-bwplot(eight.hr.grp)
-histogram(eight.hr.grp, fit="normal")
-cat("normality assumptions is xxxxx since")
+```
 
+![](week10-Exercise_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
+
+```r
+histogram(four.hr.grp, fit="normal")
+```
+
+![](week10-Exercise_files/figure-latex/unnamed-chunk-3-2.pdf)<!-- --> 
+
+```r
+bwplot(eight.hr.grp)
+```
+
+![](week10-Exercise_files/figure-latex/unnamed-chunk-3-3.pdf)<!-- --> 
+
+```r
+histogram(eight.hr.grp, fit="normal")
+```
+
+![](week10-Exercise_files/figure-latex/unnamed-chunk-3-4.pdf)<!-- --> 
+
+```r
+cat("normality assumptions is xxxxx since")
+```
+
+```
+## normality assumptions is xxxxx since
+```
+
+```r
 # iii) Carry out a two-sample t test with alpha = 0.05 to determine if there is a significant difference in mean food intake for the two different sleep conditions.
 t.test(four.hr.grp,
        eight.hr.grp,
        var.equal = TRUE,
        alternative = "two.sided")
+```
 
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  four.hr.grp and eight.hr.grp
+## t = -0.59226, df = 27, p-value = 0.5586
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -882.3543  487.0686
+## sample estimates:
+## mean of x mean of y 
+##  3924.000  4121.643
+```
+
+```r
 # iv) State the results of your t-test.
 # Can you make conclusive statement based on the information in your data? Why?  
 cat("The p-value is more than alpha, we can conclude that we failed to reject the the null hypothesis.\n Hence we cannot draw any conclusion about the alternative.")
+```
 
+```
+## The p-value is more than alpha, we can conclude that we failed to reject the the null hypothesis.
+##  Hence we cannot draw any conclusion about the alternative.
+```
+
+```r
 # last R code line
 ```
   
@@ -87,7 +212,8 @@ cat("The p-value is more than alpha, we can conclude that we failed to reject th
 
 The data are displayed in the table below:
 
-```{r}
+
+```r
 sodium <- read.table(header = T, text ="
 Instructor       Student  Sodium
 'Brendon Small'  a        1200
@@ -140,20 +266,53 @@ Instructor       Student  Sodium
   
 
 ### Code chunk
-```{r} 
+
+```r
 # start your code
 
 # i) Compare the sodium intake between the two classes.
 # Use the `favstats` function. Comment on what you see.
 favstats(Sodium ~ Instructor, data = sodium)
-cat("The mean in Brendon Small is slightly larger than that of Coach McGuirk.\n Similarly the median is also larger for Brendon")
+```
 
+```
+##      Instructor  min      Q1 median   Q3  max    mean       sd  n missing
+## 1 Brendon Small  950 1150.00 1300.0 1400 1700 1287.50 193.7341 20       0
+## 2 Coach McGuirk 1000 1143.75 1212.5 1350 1525 1246.25 142.4123 20       0
+```
+
+```r
+cat("The mean in Brendon Small is slightly larger than that of Coach McGuirk.\n Similarly the median is also larger for Brendon")
+```
+
+```
+## The mean in Brendon Small is slightly larger than that of Coach McGuirk.
+##  Similarly the median is also larger for Brendon
+```
+
+```r
 # ii) Create a boxplot and histogram (with a fitted normal density curve) for the sodium intake in the two classes.
 # Is the normal distribution a reasonable assumption for the sodium intake in both classes?
 bwplot(Sodium ~ Instructor, data = sodium)
-histogram( ~ Sodium | Instructor,  fit = "normal", data = sodium)
-cat("No the normality distribution is not a reasonable assumption for the sodium intake in either classes.")
+```
 
+![](week10-Exercise_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+
+```r
+histogram( ~ Sodium | Instructor,  fit = "normal", data = sodium)
+```
+
+![](week10-Exercise_files/figure-latex/unnamed-chunk-5-2.pdf)<!-- --> 
+
+```r
+cat("No the normality distribution is not a reasonable assumption for the sodium intake in either classes.")
+```
+
+```
+## No the normality distribution is not a reasonable assumption for the sodium intake in either classes.
+```
+
+```r
 # iii) Carry a two-sample t-test with alpha = 0.05
 # to determine if there is a significant difference in mean sodium intake for the two different classes.  
 t.test(
@@ -162,9 +321,33 @@ t.test(
   var = TRUE,
   alternative = "two.sided"
 )
+```
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  Sodium by Instructor
+## t = 0.76722, df = 38, p-value = 0.4477
+## alternative hypothesis: true difference in means between group Brendon Small and group Coach McGuirk is not equal to 0
+## 95 percent confidence interval:
+##  -67.59215 150.09215
+## sample estimates:
+## mean in group Brendon Small mean in group Coach McGuirk 
+##                     1287.50                     1246.25
+```
+
+```r
 # iv) State the results of your t-test.
 # Can you make conclusive statement based on the information in your data? Why?  
 cat("Since the p-value in the t test is greater than alpha.\n We do not have anough evidence to reject the null hypothesis that there is a significant difference in the mean sodium intake for the two different classes.")
+```
 
+```
+## Since the p-value in the t test is greater than alpha.
+##  We do not have anough evidence to reject the null hypothesis that there is a significant difference in the mean sodium intake for the two different classes.
+```
+
+```r
 # last R code line
 ```
