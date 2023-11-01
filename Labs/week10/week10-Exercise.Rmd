@@ -10,18 +10,17 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-*Directions*: 
+*Directions*:
 
-* Write your R code inside the code chunks after each question.
-* Write your answer comments after the `#` sign.
-* To generate the word document output, click the button `Knit` and wait for the word document to appear.
-* RStudio will prompt you (only once) to install the `knitr` package.
-* Submit your completed laboratory exercise using Blackboard's Turnitin feature. Your Turnitin upload link is found on your Blackboard Course shell under the Laboratory folder.
+-   Write your R code inside the code chunks after each question.
+-   Write your answer comments after the `#` sign.
+-   To generate the word document output, click the button `Knit` and wait for the word document to appear.
+-   RStudio will prompt you (only once) to install the `knitr` package.
+-   Submit your completed laboratory exercise using Blackboard's Turnitin feature. Your Turnitin upload link is found on your Blackboard Course shell under the Laboratory folder.
 
-***
+------------------------------------------------------------------------
 
 For this exercise, you will need to use the package `mosaic` to find numerical and graphical summaries.
-
 
 ```{r warning=FALSE, message=FALSE}
 # install package if necessary
@@ -30,20 +29,21 @@ if (!require(mosaic)) install.packages(`mosaic`)
 library(mosaic) # load the package mosaic to use its functions
 ```
 
-1. The experimental data below contains food intake (in Kcal) for 15 men on the day following two nights of only 4 hours of sleep each night and for 15 mean on the day following two nights of 8 hours of sleep each each night. The mean participating in this experiment were randomly assigned to one of the two sleep conditions.
+1.  The experimental data below contains food intake (in Kcal) for 15 men on the day following two nights of only 4 hours of sleep each night and for 15 mean on the day following two nights of 8 hours of sleep each each night. The mean participating in this experiment were randomly assigned to one of the two sleep conditions.
 
 ```{r}
 four.hr.grp <- c(3585, 4470, 3068, 5338, 2221, 4791, 4435, 3099, 3187, 3901, 3868, 3869, 4878, 3632, 4518)  
 eight.hr.grp <- c(4965, 3918, 1987, 4993, 5220, 3653, 3510, 3338, 4100, 5792, 4547, 3319, 4304, 4057)
 ```
 
-  i) Compute the mean and standard deviation of the two groups. Comment on what you see.  
-  ii) Create a boxplot and histogram (with a fitted normal density curve) for the food intake in the two groups. Is the normal distribution a reasonable assumption for the sodium intake in both classes?  
-  iii) Carry out a two-sample t test with alpha = 0.05 to determine if there is a significant difference in mean food intake for the two different sleep conditions.  
-  iv) State the results of your t-test. Can you make conclusive statement based on the information in your data? Why?    
+i)  Compute the mean and standard deviation of the two groups. Comment on what you see.\
+ii) Create a boxplot and histogram (with a fitted normal density curve) for the food intake in the two groups. Is the normal distribution a reasonable assumption for the sodium intake in both classes?\
+iii) Carry out a two-sample t test with alpha = 0.05 to determine if there is a significant difference in mean food intake for the two different sleep conditions.\
+iv) State the results of your t-test. Can you make conclusive statement based on the information in your data? Why?
 
 ### Code chunk
-```{r} 
+
+```{r}
 # start your code
 # i) Compute the mean and standard deviation of the two groups.
 # Comment on what you see.  
@@ -57,7 +57,7 @@ cat("mean: ")
 mean(eight.hr.grp)
 cat("standard deviation: ")
 sd(eight.hr.grp)
-cat("In the eight hour group the mean increases but so does the standard deviation")
+cat("The eight hour group has a higher mean and standard deviation than that of the four hour group.")
 
 
 # ii) Create a boxplot and histogram (with a fitted normal density curve)
@@ -67,9 +67,10 @@ bwplot(four.hr.grp)
 histogram(four.hr.grp, fit="normal")
 bwplot(eight.hr.grp)
 histogram(eight.hr.grp, fit="normal")
-cat("normality assumptions is xxxxx since")
+cat("Normality assumptions is not quite a reasonable assumptions in either classes because,\nIn the four hour group it is right skewed with two peaks.\nIn the eight hour group it is more intensely right skewed as well.\nThey both are mostly concentrated in the central area only slightly resembling a bell curve.")
 
-# iii) Carry out a two-sample t test with alpha = 0.05 to determine if there is a significant difference in mean food intake for the two different sleep conditions.
+# iii) Carry out a two-sample t test with alpha = 0.05 to determine if there is a
+# significant difference in mean food intake for the two different sleep conditions.
 t.test(four.hr.grp,
        eight.hr.grp,
        var.equal = TRUE,
@@ -77,13 +78,12 @@ t.test(four.hr.grp,
 
 # iv) State the results of your t-test.
 # Can you make conclusive statement based on the information in your data? Why?  
-cat("The p-value is more than alpha, we can conclude that we failed to reject the the null hypothesis.\n Hence we cannot draw any conclusion about the alternative.")
+cat("The p-value is more than alpha, we can conclude that we failed to reject the the null hypothesis.\nHence we cannot draw any conclusion about the alternative.")
 
 # last R code line
 ```
-  
 
-2. Instructors in two nutrition education programs have their SNAP-Ed students keep diaries of what they eat for a week, and then calculate the daily sodium intake in milligrams.  Since the classes have received different nutrition education programs, they want to see if the mean sodium intake is the same for both classes. 
+2.  Instructors in two nutrition education programs have their SNAP-Ed students keep diaries of what they eat for a week, and then calculate the daily sodium intake in milligrams. Since the classes have received different nutrition education programs, they want to see if the mean sodium intake is the same for both classes.
 
 The data are displayed in the table below:
 
@@ -133,29 +133,31 @@ Instructor       Student  Sodium
 ")
 ```
 
-  i) Compare the sodium intake between the two classes. Use the `favstats` function. Comment on what you see.  
-  ii) Create a boxplot and histogram (with a fitted normal density curve) for the sodium intake in the two classes. Is the normal distribution a reasonable assumption for the sodium intake in both classes?  
-  iii) Carry a two-sample t-test with alpha = 0.05 to determine if there is a significant difference in mean sodium intake for the two different classes.  
-  iv) State the results of your t-test. Can you make conclusive statement based on the information in your data? Why?  
-  
+i)  Compare the sodium intake between the two classes. Use the `favstats` function. Comment on what you see.\
+ii) Create a boxplot and histogram (with a fitted normal density curve) for the sodium intake in the two classes. Is the normal distribution a reasonable assumption for the sodium intake in both classes?\
+iii) Carry a two-sample t-test with alpha = 0.05 to determine if there is a significant difference in mean sodium intake for the two different classes.\
+iv) State the results of your t-test. Can you make conclusive statement based on the information in your data? Why?
 
 ### Code chunk
-```{r} 
+
+```{r}
 # start your code
 
 # i) Compare the sodium intake between the two classes.
 # Use the `favstats` function. Comment on what you see.
 favstats(Sodium ~ Instructor, data = sodium)
-cat("The mean in Brendon Small is slightly larger than that of Coach McGuirk.\n Similarly the median is also larger for Brendon")
+cat("The mean in Brendon Small is slightly larger than that of Coach McGuirk.\nSimilarly the median is also larger for Brendon")
 
-# ii) Create a boxplot and histogram (with a fitted normal density curve) for the sodium intake in the two classes.
+# ii) Create a boxplot and histogram (with a fitted normal density curve) for 
+# the sodium intake in the two classes.
 # Is the normal distribution a reasonable assumption for the sodium intake in both classes?
 bwplot(Sodium ~ Instructor, data = sodium)
 histogram( ~ Sodium | Instructor,  fit = "normal", data = sodium)
-cat("No the normality distribution is not a reasonable assumption for the sodium intake in either classes.")
+cat("The normality distribution seems close to bell shaped for Brendon Small's class,\nwhile in Coach McGuirk it seems to be bimodal.\nNormal Distribution seems reasonable at face value for Brendon Small but not Coach McGuirk")
 
 # iii) Carry a two-sample t-test with alpha = 0.05
-# to determine if there is a significant difference in mean sodium intake for the two different classes.  
+# to determine if there is a significant difference in mean sodium intake for the two
+# different classes.  
 t.test(
   Sodium ~ Instructor,
   data = sodium,
@@ -164,7 +166,7 @@ t.test(
 )
 # iv) State the results of your t-test.
 # Can you make conclusive statement based on the information in your data? Why?  
-cat("Since the p-value in the t test is greater than alpha.\n We do not have anough evidence to reject the null hypothesis that there is a significant difference in the mean sodium intake for the two different classes.")
+cat("Since the p-value in the t test is greater than alpha.\nWe do not have anough evidence to reject the null hypothesis that there is a significant\ndifference in the mean sodium intake for the two different classes.")
 
 # last R code line
 ```
