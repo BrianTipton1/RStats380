@@ -88,7 +88,7 @@ t.test(~ d,
 # iv) Based on the computed confidence interval, does the data suggest mean TBBMC
 # is different between "during lactation" and "postweaning period".
 cat(
-  "Since 0 is outside the range so therefore we reject the null hypothesis.\nSo therefore there is a significant difference between the mean"
+  "Since 0 is outside the range so therefore we reject the null hypothesis.\nSo therefore there is a significant difference between the means"
 )
 
 # v) Compute the (incorrect)  two-sample t-interval on the data.
@@ -131,15 +131,17 @@ sd(concentration ~ Situation, data = airborne)
 # ii) Construct boxplots for the `concentration` for both `indoor` and `outdoor`.    
 bwplot(concentration ~ Situation, data = airborne)
 
-# iii) Based on what you see in parts (i) and (ii), do you suspect the `concentration` levels for indoor and outdoor are different? 
+# iii) Based on what you see in parts (i) and (ii), do you suspect the `concentration`
+# levels for indoor and outdoor are different? 
 # Why?  
-cat("yes there is a difference in the concentration levels. This is because ")
+cat("yes there is a difference in the concentration levels.\nThis is because the difference in the mean and median\nbetween Indoor and Outdoor is signficant.")
 
 # iv) Is a paired sample analysis appropriate for this data? 
 # Why?
-cat("Yes I believe yes because ")
+cat("Yes, because the data is related in that they are paired samples using indoor and\noutdoor from the same home.")
 
-# v) Calculate a confidence interval for the population mean difference between indoor and outdoor concentrations using a confidence interval of 95\%,
+# v) Calculate a confidence interval for the population mean difference between indoor and
+# outdoor concentrations using a confidence interval of 95\%,
 # and interpret the resulting interval.
 t.test(
   concentration ~ Situation,
@@ -148,7 +150,7 @@ t.test(
   conf.level = 0.95,
   mu = 0
 )
-cat("We can reject the null hypothesis. Range and p-value to make the decision.")
+cat("Since our p value is less than alpha we reject the null hypothesis.\nThere is a significant difference between the means of the indoor and outdoor samples.")
 
 # last R code line
 ```
