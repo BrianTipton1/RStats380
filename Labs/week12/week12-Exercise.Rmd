@@ -55,6 +55,8 @@ debt
 # Describe each variable using these sample characteristics.  
 favstats( ~ Consumer_Debt, data = debt)
 favstats( ~ Household_Debt, data = debt)
+# The mean and standard deviation of the Consumer debt is is higher 
+# than the Household debt.
 
 # ii) What is the value of the correlation coefficient for this data set?
 cor(debt$Consumer_Debt, debt$Household_Debt)
@@ -92,7 +94,8 @@ saleprice
 ```{r} 
 # start your code
 
-# i) Construct scatterpots for `sale price versus size` and `sale price versus land-to-building ratio`.
+# i) Construct scatterpots for 
+# `sale price versus size` and `sale price versus land-to-building ratio`.
 # Be sure to fit regression lines on the scatterplots.  
 
 # a. Sale Price Versus Size
@@ -108,7 +111,8 @@ xyplot(price...M. ~ Ratio,
 # on `sale price versus size` and `sale price versus land-to-building ratio`.
 cor(saleprice)
 
-# iii) Use the `lm` function to estimated the equations of each fitted line for for `sale price versus size` and `sale price versus land-to-building ratio`.
+# iii) Use the `lm` function to estimated the equations of each fitted line for for
+# `sale price versus size` and `sale price versus land-to-building ratio`.
 # Give an interpretation of the slopes for each line. 
 model1 <- lm(price...M.~Size..k.sq.ft., data = saleprice)
 print(model1)
