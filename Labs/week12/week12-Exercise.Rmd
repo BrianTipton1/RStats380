@@ -1,8 +1,9 @@
 ---
-title: 'Laboratory Exercise Week 12'
-author: "Your Name and Section, 10 pts"
-date: "Todays Date"
-output: word_document
+title: "Laboratory Exercise Week 12"
+author: "Brian Tipton - STAT380-001"
+date: "11/8/23"
+output:
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -50,6 +51,26 @@ debt
 ```{r} 
 # start your code
 
+# i) Compute the mean and standard deviation of the two variables in the data set.
+# Describe each variable using these sample characteristics.  
+favstats( ~ Consumer_Debt, data = debt)
+favstats( ~ Household_Debt, data = debt)
+
+# ii) What is the value of the correlation coefficient for this data set?
+cor(debt$Consumer_Debt, debt$Household_Debt)
+
+# iii) Construct a scatterplot for this data set.      
+xyplot(Consumer_Debt ~ Household_Debt,
+       data = debt,
+       type = c("p", "r"))
+
+# iv) Based on parts (ii) and (iii), 
+# is it reasonable to conclude in this case that there is
+# no strong relationship between the variables (linear or otherwise)?
+
+# Yes there is no strong relationship between the variables. 
+# The correlation coefficient is very low.
+# As well as on the scatter plot the points are very far from the correlation line.
 
 # last R code line
 ```
@@ -71,6 +92,40 @@ saleprice
 ```{r} 
 # start your code
 
+# i) Construct scatterpots for `sale price versus size` and `sale price versus land-to-building ratio`.
+# Be sure to fit regression lines on the scatterplots.  
+
+# a. Sale Price Versus Size
+xyplot(price...M. ~ Size..k.sq.ft.,
+       data = saleprice,
+       type = c("p", "r"))
+# b. Sale Price Versus land-to-building Ratio
+xyplot(price...M. ~ Ratio,
+       data = saleprice,
+       type = c("p", "r"))
+
+# ii) Calculate and interpret the value of the correlation coefficients
+# on `sale price versus size` and `sale price versus land-to-building ratio`.
+cor(saleprice)
+
+# iii) Use the `lm` function to estimated the equations of each fitted line for for `sale price versus size` and `sale price versus land-to-building ratio`.
+# Give an interpretation of the slopes for each line. 
+model1 <- lm(price...M.~Size..k.sq.ft., data = saleprice)
+print(model1)
+# y = 0.005253x + 1.328142
+# Price is positively correlated to the size.
+
+model2 <- lm(price...M. ~ Ratio, data = saleprice)
+print(model2)
+# y = -0.6393x + 13.2787
+# Price is negatively correlated to the ratio.
+
+# iv) Which model would you use to explain the behavior of sale price? Why? 
+summary(model1)$r.squared
+summary(model2)$r.squared
+# Model 1 has a higher r squared value.
+# So we would pick Model 1.
+# The Model 1 has a better fitted line then Model 2.
 
 # last R code line
 ```
