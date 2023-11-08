@@ -129,7 +129,7 @@ summary(model1)$r.squared
 summary(model2)$r.squared
 # Model 1 has a higher r squared value.
 # So we would pick Model 1.
-# The Model 1 has a better fitted line then Model 2.
+# Because Model 1 has a better fitted line then Model 2.
 
 # last R code line
 ```
