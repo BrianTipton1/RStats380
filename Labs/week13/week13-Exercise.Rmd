@@ -1,8 +1,9 @@
 ---
-title: 'Laboratory Exercise Week 13'
-author: "Your Name and Section, 10 pts"
-date: "Todays Date"
-output: word_document
+title: "Laboratory Exercise Week 13"
+author: "Brian Tipton"
+date: "11/15/23"
+output:
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -49,7 +50,24 @@ debt
 ### Code chunk
 ```{r} 
 # start your code
+#i)
+xyplot(Consumer_Debt ~ Household_Debt,
+       data = debt,
+       type = c('p', 'r'))
+#ii)
+model1 <- lm (Consumer_Debt ~ Household_Debt,
+              data = debt)
+print(model1)
+mplot(model1, which = 1)
+mplot(model1, which = 2)
+# Interpretation: zero is still a plausible value from the interval test test above because zero is within the bounds
 
+# iii)
+confint(model1)
+
+# iv)
+msummary(model1)
+# Conclusion: We fail to reject the null hypothesis do to lack of evidence
 
 # last R code line
 ```
@@ -72,6 +90,42 @@ saleprice
 ```{r} 
 # start your code
 
+# i)
+xyplot(price...M. ~ Size..k.sq.ft.,
+       data = saleprice,
+       type = c('p', 'r'))
+xyplot(price...M. ~ Ratio,
+       data = saleprice,
+       type = c('p', 'r'))
+
+# ii)
+model1 <- lm(price...M. ~ Size..k.sq.ft.,
+             data = saleprice)
+model1
+model2 <- lm(price...M. ~ Ratio,
+             data = saleprice)
+model2
+
+# iii)
+mplot(model1, which = 1)
+mplot(model2, which = 2)
+mplot(model2, which = 1)
+mplot(model1, which = 2)
+
+# iv)
+confint(model1)
+# Interpretation: Zero is out of the bounds for model1 so we reject
+confint(model2)
+# Interpretation: Zero (mu) is in the bound so we fail to reject
+
+# v)
+msummary(model1)
+# Interpretation: p-value is less than alpha so we reject the null hypothesis
+
+msummary(model2)
+# Interpretation: Since p-value is greater than alpha we fail to reject the null hypothesis
+
+# Summary the size seems to have an effect on the price but the ratio does not.
 
 # last R code line
 ```
