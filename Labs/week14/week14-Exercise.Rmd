@@ -1,8 +1,9 @@
 ---
-title: 'Laboratory Exercise Week 14'
-author: "Your Name and Section, 10 pts"
-date: "Todays Date"
-output: word_document
+title: "Laboratory Exercise Week 14"
+author: "Brian Tipton"
+date: "11/29/23"
+output:
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -50,7 +51,41 @@ prey
 ### Code chunk
 ```{r} 
 # start your code
+#i)
+model1 <- lm(Catch.Time ~ Prey.Length + Prey.Speed, data = prey)
+print(model1)
 
+#ii)
+confint(model1, level = 0.95)
+confint(model1, level = 0.90)
+confint(model1, level = 0.99)
+
+# iii)
+predict(
+  model1,
+  interval = "prediction",
+  level = 0.95,
+  newdata = data.frame(Prey.Length = c(4, 6),
+                       Prey.Speed = c(30, 60))
+)
+# The above predicted method shows that
+# a) A prey of length 4, speed of 30, the catch time will be 
+# 1.355740 with a lower bound of 1.133718 and upper bound of 1.573762
+# b) A prey of length 6, speed of 60, the catch time will be 
+# 1.362915 with a lower bound of 1.148635 and upper bound of 1.577195
+
+# iv)
+msummary(model1)
+
+# v)
+prey <- prey %>%
+  mutate(x = Prey.Length / Prey.Speed)
+model2 <- lm(Catch.Time ~ x, data = prey)
+print(model2)
+
+#vi)
+msummary(model2)
+# Model1 (Multiple Regression Model) would be the better choice. 
 
 # last R code line
 ```
